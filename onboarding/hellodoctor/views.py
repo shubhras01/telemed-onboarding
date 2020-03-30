@@ -18,6 +18,6 @@ def download_doctors_data(request):
     response['Content-Disposition'] = 'attachment; filename="doctor_data.csv"'
 
     writer = csv.writer(response)
-    data_download.write_csv_file(writer, "NOT_ONBOARDED")
+    data_download.write_csv_file(writer, "ONBOARDED")
 
     return response
