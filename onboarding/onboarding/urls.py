@@ -22,11 +22,11 @@ from . import tmPartner
 
 urlpatterns = [
 
-    path('accounts/password_change/', PasswordChangeView.as_view(success_url='/on_login/')),
+    path('accounts/password_change/', PasswordChangeView.as_view(success_url='/download_csv/')),
     path('accounts/', include('django.contrib.auth.urls')),
 
-    path('on_login/', views.on_login),
-    path('download_data/', views.download_doctors_data),
+    path('download_csv/', views.download_doctors_data),
+    path('upload_csv/', views.upload_csv),
 
     path('tmpartner/', tmPartner.tm_partner_form_request, name='tmPartner'),
     path('tmvolunteer/', tmPartner.tm_volunteer_form_request, name='tmvolunteer'),
