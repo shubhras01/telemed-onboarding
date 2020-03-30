@@ -19,5 +19,6 @@ from . import tmPartner
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('tmpartner/', tmPartner.tm_form_request, name='tmPartner')
+    path('tmpartner/', tmPartner.tm_partner_form_request, name='tmPartner'),
+    path('tmvolunteer/', tmPartner.tm_volunteer_form_request, name='tmvolunteer'),
     ]
