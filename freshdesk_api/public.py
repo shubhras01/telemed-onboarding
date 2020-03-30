@@ -1,11 +1,16 @@
 """Functions for freshdesk api exposed to other modules."""
-
-import requests
+import configparser
 import json
+import requests
 
 from logzero import logger
 
-from freshdesk_api.constants import API_KEY, API_URL, PASSWORD
+config = configparser.ConfigParser()['freshdesk']
+config.read('freshdesk_secrets.ini')
+API_KEY = config['api_key']
+PASSWORD = config['password']
+DOMAIN = config['domain']
+API_URL = "https://{}.freshdesk.com/api/v2".format(DOMAIN)
 
 
 def create_agent(agent_data):
