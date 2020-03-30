@@ -22,7 +22,7 @@ def create_agent(agent_data):
     logger.info(r)
     if r.status_code == 201:
         logger.info(
-            "Contact created successfully, the response is given below" + r.content
+            "Contact created successfully."
         )
     else:
         logger.error("Failed to create contact, errors are displayed below,")
