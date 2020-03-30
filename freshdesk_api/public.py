@@ -5,7 +5,7 @@ import json
 
 from logzero import logger
 
-from constants import API_KEY, API_URL
+from freshdesk_api.constants import API_KEY, API_URL, PASSWORD
 
 
 def create_agent(agent_data):
@@ -18,8 +18,8 @@ def create_agent(agent_data):
     url = API_URL + "/agents"
     headers = {"Content-Type": "application/json"}
     json_data = json.dumps(agent_data)
-    r = requests.post(url, auth=(API_KEY, ), data=json_data, headers=headers)
-
+    r = requests.post(url, auth=(API_KEY, PASSWORD), data=json_data, headers=headers)
+    logger.info(r)
     if r.status_code == 201:
         logger.info(
             "Contact created successfully, the response is given below" + r.content
@@ -27,4 +27,4 @@ def create_agent(agent_data):
     else:
         logger.error("Failed to create contact, errors are displayed below,")
         response = json.loads(r.content)
-        logger.erro(response["errors"])
+        logger.error(response["errors"])
