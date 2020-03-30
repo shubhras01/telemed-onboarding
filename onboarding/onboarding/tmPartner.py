@@ -14,7 +14,7 @@ class TMPartnerForm(forms.Form):
     state_authority = forms.CharField(max_length=100, label='Name of the State Authority (Ex. Karnataka Medical Council)', required=True)
     organisation = forms.CharField(max_length=100, label='Name of organisation', required=True)
     language = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=list(zip(range(len(LANGUAGE_CHOICE)), LANGUAGE_CHOICE)))
-    hours = forms.MultipleChoiceField(widget=forms.CheckboxInput, choices=list(zip(range(len(DEDICATE_HOURS_CHOICE)), DEDICATE_HOURS_CHOICE)))
+    hours = forms.ChoiceField(widget=forms.Select, choices=list(zip(range(len(DEDICATE_HOURS_CHOICE)), DEDICATE_HOURS_CHOICE)), help_text="")
 
 
 def tm_form_request(request):
@@ -32,3 +32,6 @@ def tm_form_request(request):
 
     return render(request, 'tmforms/tmpartner.html', {'form': curr_form,
                                                       'submitted': submitted})
+
+class TMVolunteerForm(forms.Form):
+    
