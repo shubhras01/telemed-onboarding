@@ -9,7 +9,7 @@ class Staff(User):
         (2, 'ONBOARDED'),
     )
 
-    onboarding_status = models.IntegerField(choices=STAFF_ONBOARDING_STATUS, default=STAFF_ONBOARDING_STATUS[1])
+    onboarding_status = models.IntegerField(choices=STAFF_ONBOARDING_STATUS, default=STAFF_ONBOARDING_STATUS[0])
     address = models.CharField(max_length=500, null=True, blank=True)
     pincode = models.IntegerField(default=560000)
 

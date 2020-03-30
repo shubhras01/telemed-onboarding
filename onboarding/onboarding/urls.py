@@ -22,6 +22,9 @@ from hellodoctor import views
 urlpatterns = [
     path('accounts/password_change/', PasswordChangeView.as_view(success_url='/on_login/')),
     path('accounts/', include('django.contrib.auth.urls')),
+
     path('on_login/', views.on_login),
+    path('download_data/', views.download_doctors_data),
+
     path('admin/', admin.site.urls),
 ]
