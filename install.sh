@@ -19,5 +19,5 @@ echo "you have to activate virtualenv for your work"
 
 echo "Installing mongodb using brew"
 brew tap mongodb/brew
-brew install brew install mongodb-community@4.2
-brew services start mongodb-community@4.2
+brew install mongodb-community@4.0
+brew services start mongodb-community@4.0
