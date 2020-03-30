@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+  {% block title %}Telemedicine Onboarding{% endblock title %}
+
+  {% block content %}
+<h1> Telemedicine Doctor Volunteer Form </h1>
+  {% if submitted %}
+      <p class="success">
+         Your message was submitted successfully. Thank you.
+     </p>
+
+ {% else %}
+     <form method="post">
+        {% csrf_token %}
+         <div class="row">
+             <div class="col-6">
+                 {{ form.name|as_crispy_field }}
+             </div>
+             <div class="col-6">
+                 {{ form.email|as_crispy_field }}
+             </div>
+         </div>
+         {{ form.phone|as_crispy_field }}
+         {{ form.other_phone|as_crispy_field }}
+         {{ form.mci|as_crispy_field }}
+         {{ form.state_authority|as_crispy_field }}
+         {{ form.medical_qual|as_crispy_field }}
+         {{ form.language|as_crispy_field }}
+         {{ form.time_pref|as_crispy_field}}
+         {{ form.comment|as_crispy_field }}
+        <button type="submit" class="btn btn-success btn-space">Save person</button>
+    </form>
+ {% endif %}
+ {% endblock content %}
