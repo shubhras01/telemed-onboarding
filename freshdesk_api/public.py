@@ -13,6 +13,7 @@ def create_agent(agent_data):
 
     Args:
         agent_data (dict): Dictionary with user details.
+            `email` and `ticket_scope` are required fields.
 
     """
     url = API_URL + "/agents"
