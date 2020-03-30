@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import mongoengine, json
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,6 +28,15 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+MONGO_ENGINE_HOST = "HOST"
+MONGO_ENGINE_PORT = "PORT"
+MONGO_ENGINE_USER = "USER"
+MONGO_ENGINE_PASSWORD = "PASSWORD"
+MONGO_ENGINE_DB = "DB_NAME"
+
+ENV = "dev"
+if os.environ.get("ENV"):
+    ENV = os.environ["ENV"]
 
 # Application definition
 
@@ -37,7 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms'
+    'crispy_forms',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -76,10 +87,16 @@ WSGI_APPLICATION = 'onboarding.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': '',
     }
 }
+script_path = os.path.dirname(os.path.abspath(__file__))
+config_path = script_path + "/config/" + ENV + ".json"
+with open(config_path) as f:
+    mongo_config = json.loads(f.read())
+
+mongoengine.connect(mongo_config[MONGO_ENGINE_DB], host=mongo_config[MONGO_ENGINE_HOST], port=mongo_config[MONGO_ENGINE_PORT], username=mongo_config[MONGO_ENGINE_USER], password=mongo_config[MONGO_ENGINE_PASSWORD])
+
 
 
 # Password validation
