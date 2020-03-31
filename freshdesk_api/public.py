@@ -5,14 +5,15 @@ import requests
 
 from logzero import logger
 
-config = configparser.ConfigParser()["freshdesk"]
+config = configparser.ConfigParser()
 config.read("freshdesk_secrets.ini")
-API_KEY = config["api_key"]
-PASSWORD = config["password"]
-DOMAIN = config["domain"]
+secrets = config["freshdesk"]
+API_KEY = secrets["api_key"]
+PASSWORD = secrets["password"]
+DOMAIN = secrets["domain"]
 API_URL = "https://{}.freshdesk.com/api/v2".format(DOMAIN)
 AGENT_TICKET_SCOPE = 1
-
+print(API_URL)
 
 def create_agent(agent_data):
     """Create a new agent on freshdesk portal.
@@ -32,24 +33,5 @@ def create_agent(agent_data):
     else:
         logger.error("Failed to create contact, errors are displayed below,")
         logger.error(response["errors"])
-    return response
+    return r.status_code
 
-
-def create_user_agent(doctor):
-    """Create a agent in freshdesk from doctor object.
-
-    Args:
-        doctor (onboarding.models.Doctor)
-
-    Returns:
-        response from api (dict)
-
-    """
-    agent_data = {
-        "email": doctor.email,
-        "name": doctor.full_name,
-        "mobile": doctor.contact_number,
-        "language": doctor.language,
-        "ticket_scope": AGENT_TICKET_SCOPE,
-    }
-    return create_agent(agent_data)

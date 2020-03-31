@@ -5,6 +5,8 @@ import uuid
 from rest_framework import serializers, viewsets, response
 
 from . const import MEDICAL_QUAL_CHOICES, TIME_PREF_CHOICES, LANGUAGE_CHOICE, DEDICATE_HOURS_CHOICE, ONBOARDING_FAIL, ONBOARDING_QUEUE, ONBOARDING_REJECTED, ONBOARDING_SUCCEED, ONBOARDING_UNQUALIFIED
+from freshdesk_api.public import create_agent
+from freshdesk_api.constants import AgentAPIFields, TICKET_SCOPE, LANGUAGE
 
 TMP = "partner"
 TMV = "volunteer"
@@ -31,15 +33,32 @@ class Doctor(Document):
                                         (ONBOARDING_UNQUALIFIED, ONBOARDING_UNQUALIFIED),
                                         (ONBOARDING_QUEUE, ONBOARDING_QUEUE)))
     created_at = fields.DateTimeField(auto_now_add=True)
-    freshdesk_agent_created = fields.BooleanField()
+    freshdesk_agent_created = fields.BooleanField(default=False)
     comment = fields.StringField()
     meta_status = fields.StringField()
 
     def save(self, *args, **kwargs):
         if not self.id:
             self.id = uuid.uuid4()
+        if (self.onboarding_status == ONBOARDING_SUCCEED):
+            status_code = self.create_agent_in_freshdesk()
+            if status_code == 201:
+                self.freshdesk_agent_created = True
+            else:
+                print("freshdesk agent creation failed")  # TODO: Replace with a logger.
         self.duty_hours = DEDICATE_HOURS_CHOICE[int(self.duty_hours)]
         return super(Doctor, self).save(*args, **kwargs)
+
+    def create_agent_in_freshdesk(self):
+        req = {
+                AgentAPIFields.name: self.name,
+                AgentAPIFields.email: self.email,
+                AgentAPIFields.language: LANGUAGE,
+                AgentAPIFields.mobile: str(self.contact_number),
+                AgentAPIFields.ticket_scope: TICKET_SCOPE
+            }
+        return create_agent(req)
+
 
    # def create(self, validated_data):
     #     if not self.id:
