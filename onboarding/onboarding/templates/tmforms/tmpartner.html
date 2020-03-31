@@ -21,13 +21,13 @@
                  {{ form.email|as_crispy_field }}
              </div>
          </div>
-         {{ form.phone|as_crispy_field }}
-         {{ form.other_phone|as_crispy_field }}
+         {{ form.contact_number|as_crispy_field }}
+         {{ form.other_contact|as_crispy_field }}
          {{ form.mci|as_crispy_field }}
          {{ form.state_authority|as_crispy_field }}
-         {{ form.organisation|as_crispy_field }}
+         {{ form.organisation_name|as_crispy_field }}
          {{ form.language|as_crispy_field }}
-         {{ form.hours|as_crispy_field}}
+         {{ form.duty_hours|as_crispy_field}}
         <button type="submit" class="btn btn-success btn-space">Save person</button>
     </form>
  {% endif %}
