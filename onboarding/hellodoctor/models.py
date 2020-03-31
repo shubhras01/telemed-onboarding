@@ -21,4 +21,7 @@ class Staff(AbstractUser):
     availability_status = models.CharField(max_length=500, null=True, blank=True)
 
     class Meta:
-        verbose_name='Staff'
+        verbose_name = 'Staff'
+
+    def __str__(self):
+        return self.username
