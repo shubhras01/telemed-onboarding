@@ -39,6 +39,7 @@ class Doctor(models.Model):
     freshdesk_agent_created = models.BooleanField(default=False)
     comment = models.CharField(max_length=200)
     meta_status = models.CharField(max_length=100)
+    last_updated_staff = models.CharField(max_length=100, blank=True, null=True)
 
     def create(self, *args, **kwargs):
         if not self.id:
