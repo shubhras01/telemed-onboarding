@@ -35,8 +35,7 @@ class Doctor(models.Model):
                                         (ONBOARDING_UNQUALIFIED, ONBOARDING_UNQUALIFIED),
                                         (ONBOARDING_QUEUE, ONBOARDING_QUEUE)), max_length=20)
     created_at = models.DateTimeField(auto_created=True)
-    # updated_at = models.DateTimeField(auto_now_add=True)
-    freshdesk_agent_created = models.BooleanField(default=False)
+    freshdesk_agent_created = models.BooleanField(defaul=False)
     comment = models.CharField(max_length=200)
     meta_status = models.CharField(max_length=100)
 
