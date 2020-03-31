@@ -13,7 +13,7 @@ PASSWORD = secrets["password"]
 DOMAIN = secrets["domain"]
 API_URL = "https://{}.freshdesk.com/api/v2".format(DOMAIN)
 AGENT_TICKET_SCOPE = 1
-print(API_URL)
+
 
 def create_agent(agent_data):
     """Create a new agent on freshdesk portal.
