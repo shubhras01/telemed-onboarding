@@ -88,13 +88,22 @@ WSGI_APPLICATION = 'onboarding.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'doctordb',
+        'USER': 'shubhra',
+        'PASSWORD': '12345',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
 }
+
 script_path = os.path.dirname(os.path.abspath(__file__))
 config_path = script_path + "/config/" + ENV + ".json"
 with open(config_path) as f:
     mongo_config = json.loads(f.read())
 
-mongoengine.connect(mongo_config[MONGO_ENGINE_DB], host=mongo_config[MONGO_ENGINE_HOST], port=mongo_config[MONGO_ENGINE_PORT], username=mongo_config[MONGO_ENGINE_USER], password=mongo_config[MONGO_ENGINE_PASSWORD])
+# mongoengine.connect(mongo_config[MONGO_ENGINE_DB], host=mongo_config[MONGO_ENGINE_HOST], port=mongo_config[MONGO_ENGINE_PORT], username=mongo_config[MONGO_ENGINE_USER], password=mongo_config[MONGO_ENGINE_PASSWORD])
 
 
 
