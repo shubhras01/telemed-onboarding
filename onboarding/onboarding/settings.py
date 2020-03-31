@@ -26,7 +26,7 @@ SECRET_KEY = '4+7np40=h)c&*(89abf$ql6hgfntpnaczwal93ax66)s_jnz=o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '35.200.203.251', 'www.helloDoc.com']
 
 PSQL_HOST = "HOST"
 PSQL_PORT = "PORT"
