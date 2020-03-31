@@ -22,7 +22,8 @@ from . import tmPartner
 
 urlpatterns = [
 
-    path('accounts/password_change/', PasswordChangeView.as_view(success_url='/download_csv/')),
+    # TODO - saran: Check if we actually need the below commented out path
+    # path('accounts/password_change/', PasswordChangeView.as_view(success_url='/download_csv/')),
     path('accounts/', include('django.contrib.auth.urls')),
 
     path('download_csv/', views.download_doctors_data),
