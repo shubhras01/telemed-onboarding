@@ -1,16 +1,15 @@
+import datetime
+import uuid
+
+from django.contrib.postgres.fields import ArrayField
 from django.db import models
-from django.contrib.postgres.fields import JSONField, ArrayField
-import uuid, datetime
-
-from rest_framework import serializers, viewsets, response
-
-from . const import MEDICAL_QUAL_CHOICES, TIME_PREF_CHOICES, LANGUAGE_CHOICE, \
-    DEDICATE_HOURS_CHOICE, ONBOARDING_FAIL, ONBOARDING_QUEUE, ONBOARDING_REJECTED,\
-    ONBOARDING_SUCCEED, ONBOARDING_UNQUALIFIED, TMV, TMP
 
 import freshdesk_api.constants as fd_const
 from freshdesk_api.constants import AgentAPIFields
 from freshdesk_api.public import create_agent
+from .const import MEDICAL_QUAL_CHOICES, TIME_PREF_CHOICES, DEDICATE_HOURS_CHOICE, ONBOARDING_FAIL, ONBOARDING_QUEUE, \
+    ONBOARDING_REJECTED, \
+    ONBOARDING_SUCCEED, ONBOARDING_UNQUALIFIED, TMV, TMP
 
 DOCTORS_TYPS = [TMP, TMV]
 
@@ -30,14 +29,16 @@ class Doctor(models.Model):
     doctor_type = models.CharField(choices=tuple(zip(DOCTORS_TYPS, DOCTORS_TYPS)), max_length=10)
     duty_hours = models.CharField(choices=tuple(zip(DEDICATE_HOURS_CHOICE, DEDICATE_HOURS_CHOICE)), max_length=10)
     onboarding_status = models.CharField(choices=((ONBOARDING_SUCCEED, ONBOARDING_SUCCEED),
-                                        (ONBOARDING_FAIL, ONBOARDING_FAIL),
-                                        (ONBOARDING_REJECTED, ONBOARDING_REJECTED),
-                                        (ONBOARDING_UNQUALIFIED, ONBOARDING_UNQUALIFIED),
-                                        (ONBOARDING_QUEUE, ONBOARDING_QUEUE)), max_length=20)
+                                                  (ONBOARDING_FAIL, ONBOARDING_FAIL),
+                                                  (ONBOARDING_REJECTED, ONBOARDING_REJECTED),
+                                                  (ONBOARDING_UNQUALIFIED, ONBOARDING_UNQUALIFIED),
+                                                  (ONBOARDING_QUEUE, ONBOARDING_QUEUE)), max_length=20)
     created_at = models.DateTimeField(auto_now_add=datetime.datetime.now())
     freshdesk_agent_created = models.BooleanField(default=False)
     comment = models.CharField(max_length=200)
     meta_status = models.CharField(max_length=100)
+    doctor_data_already_downloaded = models.BooleanField(default=False)
+    last_updated_staff = models.CharField(max_length=100, blank=True, null=True)
 
     def create(self, *args, **kwargs):
         if not self.id:
@@ -76,4 +77,3 @@ class Doctor(models.Model):
             AgentAPIFields.language: fd_const.LANGUAGE
         }
         return create_agent(req)
- 
