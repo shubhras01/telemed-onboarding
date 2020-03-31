@@ -70,7 +70,7 @@ def tm_volunteer_form_request(request):
             cleaned_data['doctor_type'] = TMV
             serializer = DoctorSerializer(data=cleaned_data)
             if serializer.is_valid():
-                serializer.create()
+                serializer.save(**cleaned_data)
             else:
                 logging.error("error in saving doctor to model: %s", serializer.errors)
             return HttpResponseRedirect('/tmvolunteer?submitted=True')
