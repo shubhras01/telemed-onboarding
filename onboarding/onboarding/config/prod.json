@@ -1,7 +1,7 @@
 {
-  "DB_NAME": "doctors",
-  "HOST": "127.0.0.1",
-  "PORT": 27017,
-  "USER": "",
-  "PASSWORD": ""
+ "DB_NAME": "doctordb",
+ "HOST": "127.0.0.1",
+ "PORT": 5432,
+ "USER": "devs",
+ "PASSWORD": "Am3BQQV0DSy7"
 }
