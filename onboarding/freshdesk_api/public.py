@@ -1,12 +1,14 @@
 """Functions for freshdesk api exposed to other modules."""
 import configparser
 import json
-import requests
+import requests, os
 
 from logzero import logger
 
+script_path = os.path.dirname(os.path.abspath(__file__))
+config_path = script_path + "/freshdesk_secrets.ini"
 config = configparser.ConfigParser()
-config.read("freshdesk_secrets.ini")
+config.read(config_path)
 secrets = config["freshdesk"]
 API_KEY = secrets["api_key"]
 PASSWORD = secrets["password"]

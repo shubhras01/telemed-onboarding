@@ -4,7 +4,10 @@ import uuid, datetime
 
 from rest_framework import serializers, viewsets, response
 
-from . const import MEDICAL_QUAL_CHOICES, TIME_PREF_CHOICES, LANGUAGE_CHOICE, DEDICATE_HOURS_CHOICE, ONBOARDING_FAIL, ONBOARDING_QUEUE, ONBOARDING_REJECTED, ONBOARDING_SUCCEED, ONBOARDING_UNQUALIFIED, TMV, TMP
+from . const import MEDICAL_QUAL_CHOICES, TIME_PREF_CHOICES, LANGUAGE_CHOICE, \
+    DEDICATE_HOURS_CHOICE, ONBOARDING_FAIL, ONBOARDING_QUEUE, ONBOARDING_REJECTED,\
+    ONBOARDING_SUCCEED, ONBOARDING_UNQUALIFIED, TMV, TMP
+
 import freshdesk_api.constants as fd_const
 from freshdesk_api.constants import AgentAPIFields
 from freshdesk_api.public import create_agent
@@ -50,7 +53,6 @@ class Doctor(Document):
             # TODO: Log user id for which this fails
         return super(Doctor, self).save(*args, **kwargs)
 
-
     def create_freshdesk_agent(self):
         req = {
             AgentAPIFields.email: self.email,
@@ -59,5 +61,5 @@ class Doctor(Document):
             AgentAPIFields.ticket_scope: fd_const.TICKET_SCOPE,
             AgentAPIFields.language: fd_const.LANGUAGE
         }
-        return create_agent(reg)
+        return create_agent(req)
  
