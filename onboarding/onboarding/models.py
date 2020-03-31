@@ -11,7 +11,7 @@ DOCTORS_TYPS = [TMP, TMV]
 
 
 class Doctor(Document):
-    id = fields.UUIDField(primary_key=True)
+    id = fields.StringField(primary_key=True)
     name = fields.StringField(max_length=100, null=False)
     email = fields.EmailField(max_length=100, null=False)
     medical_qual = fields.StringField(choices=tuple(zip(MEDICAL_QUAL_CHOICES, MEDICAL_QUAL_CHOICES)))
@@ -36,7 +36,7 @@ class Doctor(Document):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            self.id = uuid.uuid4()
+            self.id = uuid.uuid4().__str__()
         if not self.onboarding_status:
             self.onboarding_status = ONBOARDING_QUEUE
         if not self.created_at:
