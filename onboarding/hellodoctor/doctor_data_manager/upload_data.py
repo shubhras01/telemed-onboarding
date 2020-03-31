@@ -1,14 +1,12 @@
 import csv
 
-from hellodoctor.models import Doctor
+from onboarding.models import Doctor
 
 
 def write_file(f):
     with open('csv_upload_data/doctor_data.csv', 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
-
-        print('calling update_db_from_file')
 
     with open('csv_upload_data/doctor_data.csv', 'r') as f:
         update_db_from_file(f)
