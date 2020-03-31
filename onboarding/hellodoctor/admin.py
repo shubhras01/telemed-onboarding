@@ -6,4 +6,8 @@ from onboarding.models import Doctor
 
 # Register your models here.
 admin.site.register(Staff, UserAdmin)
-admin.site.register(Doctor)
+
+
+@admin.register(Doctor)
+class DoctorAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'medical_qual', 'mci', 'state_authority', 'contact_number', 'onboarding_status')
