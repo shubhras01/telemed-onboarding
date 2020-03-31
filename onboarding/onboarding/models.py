@@ -76,4 +76,10 @@ class Doctor(models.Model):
             AgentAPIFields.language: fd_const.LANGUAGE
         }
         return create_agent(req)
- 
+
+
+ class Language(models.Model):
+    id = models.CharField(primary_key=True, unique=True, max_length=100)
+    language = models.CharField(max_length=10, blank=False)
+    group_id = models.IntegerField()
+
