@@ -6,6 +6,7 @@ from django.shortcuts import render
 
 from hellodoctor.doctor_data_manager import data_download
 from hellodoctor.doctor_data_manager.upload_data import write_file
+from onboarding.const import *
 
 
 @login_required(login_url='/login/')
@@ -14,7 +15,7 @@ def download_doctors_data(request):
     response['Content-Disposition'] = 'attachment; filename="doctor_data.csv"'
 
     writer = csv.writer(response)
-    data_download.write_csv_file(writer, "ONBOARDED")
+    data_download.write_csv_file(writer, ONBOARDING_QUEUE)
 
     return response
 
