@@ -8,3 +8,6 @@ ONBOARDING_REJECTED = "rejected"
 ONBOARDING_UNQUALIFIED = "unqualified"
 ONBOARDING_SUCCEED = "succeed"
 ONBOARDING_FAIL = "fail"
+
+TMP = "partner"
+TMV = "volunteer"

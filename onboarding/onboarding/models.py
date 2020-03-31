@@ -1,13 +1,12 @@
 from mongoengine import EmbeddedDocument, fields, Document
 from django.contrib.postgres.fields import JSONField
-import uuid
+import uuid, datetime
 
 from rest_framework import serializers, viewsets, response
 
-from . const import MEDICAL_QUAL_CHOICES, TIME_PREF_CHOICES, LANGUAGE_CHOICE, DEDICATE_HOURS_CHOICE, ONBOARDING_FAIL, ONBOARDING_QUEUE, ONBOARDING_REJECTED, ONBOARDING_SUCCEED, ONBOARDING_UNQUALIFIED
+from . const import MEDICAL_QUAL_CHOICES, TIME_PREF_CHOICES, LANGUAGE_CHOICE, DEDICATE_HOURS_CHOICE, ONBOARDING_FAIL, ONBOARDING_QUEUE, ONBOARDING_REJECTED, ONBOARDING_SUCCEED, ONBOARDING_UNQUALIFIED, TMV, TMP
 
-TMP = "partner"
-TMV = "volunteer"
+
 DOCTORS_TYPS = [TMP, TMV]
 
 
@@ -23,30 +22,23 @@ class Doctor(Document):
     time_pref = fields.StringField(choices=tuple(zip(TIME_PREF_CHOICES, TIME_PREF_CHOICES)))
     language = fields.ListField(null=False)
     organisation_name = fields.StringField(max_length=100)
-    doctor_type = fields.StringField(choices=tuple(zip(range(len(DOCTORS_TYPS)), DOCTORS_TYPS)))
+    doctor_type = fields.StringField(choices=tuple(zip(DOCTORS_TYPS, DOCTORS_TYPS)))
     duty_hours = fields.StringField(choices=tuple(zip(DEDICATE_HOURS_CHOICE, DEDICATE_HOURS_CHOICE)))
     onboarding_status = fields.StringField(choices=((ONBOARDING_SUCCEED, ONBOARDING_SUCCEED),
                                         (ONBOARDING_FAIL, ONBOARDING_FAIL),
                                         (ONBOARDING_REJECTED, ONBOARDING_REJECTED),
                                         (ONBOARDING_UNQUALIFIED, ONBOARDING_UNQUALIFIED),
                                         (ONBOARDING_QUEUE, ONBOARDING_QUEUE)))
-    created_at = fields.DateTimeField(auto_now_add=True)
-    freshdesk_agent_created = fields.BooleanField()
+    created_at = fields.DateTimeField(auto_now_add=datetime.datetime.now())
+    freshdesk_agent_created = fields.BooleanField(default=False)
     comment = fields.StringField()
     meta_status = fields.StringField()
 
     def save(self, *args, **kwargs):
         if not self.id:
             self.id = uuid.uuid4()
-        self.duty_hours = DEDICATE_HOURS_CHOICE[int(self.duty_hours)]
+        if not self.onboarding_status:
+            self.onboarding_status = ONBOARDING_QUEUE
+        if not self.created_at:
+            self.created_at = datetime.datetime.now()
         return super(Doctor, self).save(*args, **kwargs)
-
-   # def create(self, validated_data):
-    #     if not self.id:
-    #         validated_data[id] = uuid.UUID()
-    #     return Doctor.objects.create(**validated_data)
-    #
-    # class Meta:
-    #     ordering = ['created_at']
-    #
-
