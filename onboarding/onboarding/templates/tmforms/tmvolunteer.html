@@ -4,7 +4,7 @@
   {% block title %}Telemedicine Onboarding{% endblock title %}
 
   {% block content %}
-<h1> Telemedicine Partner Onboarding - Telescreening COVID </h1>
+<h1> Telemedicine Doctor Volunteer Form </h1>
   {% if submitted %}
       <p class="success">
          Your message was submitted successfully. Thank you.
@@ -25,9 +25,10 @@
          {{ form.other_contact|as_crispy_field }}
          {{ form.mci|as_crispy_field }}
          {{ form.state_authority|as_crispy_field }}
-         {{ form.organisation_name|as_crispy_field }}
+         {{ form.medical_qual|as_crispy_field }}
          {{ form.language|as_crispy_field }}
-         {{ form.duty_hours|as_crispy_field}}
+         {{ form.time_pref|as_crispy_field}}
+         {{ form.comment|as_crispy_field }}
         <button type="submit" class="btn btn-success btn-space">Save person</button>
     </form>
  {% endif %}

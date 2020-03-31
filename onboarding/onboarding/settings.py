@@ -48,8 +48,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
-    'rest_framework'
-    'hellodoctor'
+    'rest_framework',
+    'hellodoctor',
+    'onboarding',
 ]
 
 MIDDLEWARE = [
@@ -87,9 +88,6 @@ WSGI_APPLICATION = 'onboarding.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': '',
-    }
 }
 script_path = os.path.dirname(os.path.abspath(__file__))
 config_path = script_path + "/config/" + ENV + ".json"
