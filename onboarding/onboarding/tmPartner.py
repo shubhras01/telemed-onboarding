@@ -15,7 +15,7 @@ class TMPartnerForm(forms.Form):
     email = forms.EmailField(label='Email ID', required=True)
     mci = forms.IntegerField(label='MCI Registration Number', required=True)
     state_authority = forms.CharField(max_length=100, label='Name of the State Authority (Ex. Karnataka Medical Council)', required=True)
-    organisation_name = forms.CharField(max_length=100, label='Name of organisation', required=True)
+    organisation_name = forms.CharField(max_length=100, label='Name of organisation\n(ex - Medlife, Care.Fit, ESI Karnataka, etc)', required=True)
     language = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=list(zip(LANGUAGE_CHOICE, LANGUAGE_CHOICE)))
     duty_hours = forms.ChoiceField(widget=forms.Select, choices=list(zip(DEDICATE_HOURS_CHOICE, DEDICATE_HOURS_CHOICE)), help_text="")
 
@@ -50,7 +50,7 @@ class TMVolunteerForm(forms.Form):
     email = forms.EmailField(label='Email ID', required=True)
     medical_qual = forms.ChoiceField(widget=forms.Select, choices=list(zip(MEDICAL_QUAL_CHOICES, MEDICAL_QUAL_CHOICES)))
     mci = forms.IntegerField(label='Please enter the registration no. given by MCI or State Authority', required=True)
-    organisation_name = forms.CharField(label=)
+
     state_authority = forms.CharField(max_length=100,
                                       label='Name of the State Authority (Ex. Karnataka Medical Council)',
                                       required=True)
