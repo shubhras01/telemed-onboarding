@@ -28,79 +28,80 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-MONGO_ENGINE_HOST = "HOST"
-MONGO_ENGINE_PORT = "PORT"
-MONGO_ENGINE_USER = "USER"
-MONGO_ENGINE_PASSWORD = "PASSWORD"
-MONGO_ENGINE_DB = "DB_NAME"
+PSQL_HOST = "HOST"
+PSQL_PORT = "PORT"
+PSQL_USER = "USER"
+PSQL_PASSWORD = "PASSWORD"
+PSQL_DB = "DB_NAME"
 
 ENV = "dev"
 if os.environ.get("ENV"):
-    ENV = os.environ["ENV"]
+ ENV = os.environ["ENV"]
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'hellodoctor',
-    'crispy_forms',
-    'rest_framework',
-    'onboarding',
+ 'django.contrib.admin',
+ 'django.contrib.auth',
+ 'django.contrib.contenttypes',
+ 'django.contrib.sessions',
+ 'django.contrib.messages',
+ 'django.contrib.staticfiles',
+ 'hellodoctor',
+ 'crispy_forms',
+ 'rest_framework',
+ 'onboarding',
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+ 'django.middleware.security.SecurityMiddleware',
+ 'django.contrib.sessions.middleware.SessionMiddleware',
+ 'django.middleware.common.CommonMiddleware',
+ 'django.middleware.csrf.CsrfViewMiddleware',
+ 'django.contrib.auth.middleware.AuthenticationMiddleware',
+ 'django.contrib.messages.middleware.MessageMiddleware',
+ 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'onboarding.urls'
 
 TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'onboarding/templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
+ {
+ 'BACKEND': 'django.template.backends.django.DjangoTemplates',
+ 'DIRS': [os.path.join(BASE_DIR, 'onboarding/templates')],
+ 'APP_DIRS': True,
+ 'OPTIONS': {
+ 'context_processors': [
+ 'django.template.context_processors.debug',
+ 'django.template.context_processors.request',
+ 'django.contrib.auth.context_processors.auth',
+ 'django.contrib.messages.context_processors.messages',
+ ],
+ },
+ },
 ]
 
 WSGI_APPLICATION = 'onboarding.wsgi.application'
+
+script_path = os.path.dirname(os.path.abspath(__file__))
+config_path = script_path + "/config/" + ENV + ".json"
+with open(config_path) as f:
+ psql_config = json.loads(f.read())
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'doctordb',
-        'USER': 'shubhra',
-        'PASSWORD': '12345',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
+ 'default': {
+ 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+ 'NAME': psql_config[PSQL_DB],
+ 'USER': psql_config[PSQL_USER],
+ 'PASSWORD': psql_config[PSQL_PASSWORD],
+ 'HOST': psql_config[PSQL_HOST],
+ 'PORT': psql_config[PSQL_PORT],
+ }
 }
 
-script_path = os.path.dirname(os.path.abspath(__file__))
-config_path = script_path + "/config/" + ENV + ".json"
-with open(config_path) as f:
-    mongo_config = json.loads(f.read())
 
 # mongoengine.connect(mongo_config[MONGO_ENGINE_DB], host=mongo_config[MONGO_ENGINE_HOST], port=mongo_config[MONGO_ENGINE_PORT], username=mongo_config[MONGO_ENGINE_USER], password=mongo_config[MONGO_ENGINE_PASSWORD])
 
@@ -109,18 +110,18 @@ with open(config_path) as f:
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+ {
+ 'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+ },
+ {
+ 'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+ },
+ {
+ 'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+ },
+ {
+ 'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+ },
 ]
 
 AUTH_USER_MODEL = 'hellodoctor.staff'
@@ -152,5 +153,5 @@ EMAIL_HOST_PASSWORD = 'xxxxx'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'onboarding/static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'onboarding/static'),
+ os.path.join(BASE_DIR, 'onboarding/static'),
 ]
