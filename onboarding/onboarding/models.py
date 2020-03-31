@@ -5,7 +5,9 @@ import uuid, datetime
 from rest_framework import serializers, viewsets, response
 
 from . const import MEDICAL_QUAL_CHOICES, TIME_PREF_CHOICES, LANGUAGE_CHOICE, DEDICATE_HOURS_CHOICE, ONBOARDING_FAIL, ONBOARDING_QUEUE, ONBOARDING_REJECTED, ONBOARDING_SUCCEED, ONBOARDING_UNQUALIFIED, TMV, TMP
-
+import freshdesk_api.constants as fd_const
+from freshdesk_api.constants import AgentAPIFields
+from freshdesk_api.public import create_agent
 
 DOCTORS_TYPS = [TMP, TMV]
 
@@ -41,4 +43,21 @@ class Doctor(Document):
             self.onboarding_status = ONBOARDING_QUEUE
         if not self.created_at:
             self.created_at = datetime.datetime.now()
+        if self.onboarding_status == ONBOARDING_SUCCEED:
+            freshdesk_status = self.create_freshdesk_agent()
+            if freshdesk_status == 201:
+                self.freshdesk_agent_created = True
+            # TODO: Log user id for which this fails
         return super(Doctor, self).save(*args, **kwargs)
+
+
+    def create_freshdesk_agent(self):
+        req = {
+            AgentAPIFields.email: self.email,
+            AgentAPIFields.name: self.name,
+            AgentAPIFields.mobile: str(self.contact_number),
+            AgentAPIFields.ticket_scope: fd_const.TICKET_SCOPE,
+            AgentAPIFields.language: fd_const.LANGUAGE
+        }
+        return create_agent(reg)
+ 
