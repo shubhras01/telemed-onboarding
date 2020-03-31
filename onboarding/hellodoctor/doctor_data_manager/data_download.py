@@ -1,4 +1,4 @@
-from hellodoctor.models import Doctor
+from onboarding.models import Doctor
 
 
 def write_csv_file(writer, doctor_onboarding_status):
