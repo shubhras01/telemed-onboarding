@@ -59,5 +59,5 @@ class Doctor(Document):
             AgentAPIFields.ticket_scope: fd_const.TICKET_SCOPE,
             AgentAPIFields.language: fd_const.LANGUAGE
         }
-        return create_agent(reg)
+        return create_agent(req)
  
