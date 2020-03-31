@@ -28,11 +28,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-MONGO_ENGINE_HOST = "HOST"
-MONGO_ENGINE_PORT = "PORT"
-MONGO_ENGINE_USER = "USER"
-MONGO_ENGINE_PASSWORD = "PASSWORD"
-MONGO_ENGINE_DB = "DB_NAME"
+PSQL_HOST = "HOST"
+PSQL_PORT = "PORT"
+PSQL_USER = "USER"
+PSQL_PASSWORD = "PASSWORD"
+PSQL_DB = "DB_NAME"
 
 ENV = "dev"
 if os.environ.get("ENV"):
@@ -83,6 +83,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'onboarding.wsgi.application'
 
+script_path = os.path.dirname(os.path.abspath(__file__))
+config_path = script_path + "/config/" + ENV + ".json"
+with open(config_path) as f:
+    psql_config = json.loads(f.read())
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -90,21 +94,16 @@ WSGI_APPLICATION = 'onboarding.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'doctordb',
-        'USER': 'shubhra',
-        'PASSWORD': '12345',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': psql_config[PSQL_DB],
+        'USER': psql_config[PSQL_USER],
+        'PASSWORD': psql_config[PSQL_PASSWORD],
+        'HOST': psql_config[PSQL_HOST],
+        'PORT': psql_config[PSQL_PORT],
     }
 }
 
-script_path = os.path.dirname(os.path.abspath(__file__))
-config_path = script_path + "/config/" + ENV + ".json"
-with open(config_path) as f:
-    mongo_config = json.loads(f.read())
 
 # mongoengine.connect(mongo_config[MONGO_ENGINE_DB], host=mongo_config[MONGO_ENGINE_HOST], port=mongo_config[MONGO_ENGINE_PORT], username=mongo_config[MONGO_ENGINE_USER], password=mongo_config[MONGO_ENGINE_PASSWORD])
-
 
 
 # Password validation
