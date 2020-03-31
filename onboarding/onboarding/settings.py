@@ -146,5 +146,3 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'onboarding/static'),
 ]
-
-LOGIN_REDIRECT_URL = '/on_login/'
