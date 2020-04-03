@@ -1,5 +1,5 @@
-   @charset "utf-8";
-   #header {
+@charset "utf-8";
+/* #header {
        border-style: none;
        width: 800px;
        height: auto;
@@ -84,4 +84,75 @@
  }
  .btn-space {
     margin-right: 10px;
+    } */
+
+/* author: Ajith VM */
+
+body {
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+}
+body * {
+    font-family: "Sen", sans-serif;
+}
+
+.siteHeader {
+    background-color: #9ad7db;
+}
+
+.siteHeader .siteContainer {
+    max-width: 800px;
+    margin: auto;
+    font-size: 14px;
+    color: #007f96;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.siteHeader .mainText {
+    font-size: 40px;
+    line-height: 1;
+    margin-bottom: 10px;
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+.imageSection img.docImg {
+    height: 275px;
+    display: inline-block;
+    background-size: cover;
+    background-position: center;
+    margin: auto;
+    margin-top: 20px;
+    border: none;
+}
+
+@media (max-width: 980px) {
+    .imageSection .docImg {
+        height: 150px;
     }
+}
+
+.supportedSection {
+    color: black;
+}
+
+.supportedSection img {
+    margin-right: 20px;
+}
+@media (max-width: 980px) {
+    .supportedSection img {
+        height: 70px;
+    }
+}
+
+.supportedSection .supportedText {
+    margin-top: 40px;
+}
+
+@media (max-width: 980px) {
+    .supportedSection .supportedText {
+        margin-top: 20px;
+    }
+}
