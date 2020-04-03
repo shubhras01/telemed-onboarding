@@ -1,35 +1,62 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 
-  {% block title %}Telemedicine Onboarding{% endblock title %}
+{% block title %}Telemedicine Onboarding{% endblock title %}
+{% block form_title %} Telemedicine Doctor Volunteer Form {% endblock form_title %}
 
-  {% block content %}
-<h1> Telemedicine Doctor Volunteer Form </h1>
-  {% if submitted %}
-      <p class="success">
-         Your message was submitted successfully. Thank you.
-     </p>
+{% block content %}
+{% if submitted %}
+<p class="success">
+    Your message was submitted successfully. Thank you.
+</p>
 
- {% else %}
-     <form method="post">
-        {% csrf_token %}
-         <div class="row">
-             <div class="col-6">
-                 {{ form.name|as_crispy_field }}
-             </div>
-             <div class="col-6">
-                 {{ form.email|as_crispy_field }}
-             </div>
-         </div>
-         {{ form.contact_number|as_crispy_field }}
-         {{ form.other_contact|as_crispy_field }}
-         {{ form.mci|as_crispy_field }}
-         {{ form.state_authority|as_crispy_field }}
-         {{ form.medical_qual|as_crispy_field }}
-         {{ form.language|as_crispy_field }}
-         {{ form.time_pref|as_crispy_field}}
-         {{ form.comment|as_crispy_field }}
-        <button type="submit" class="btn btn-success btn-space">Save person</button>
-    </form>
- {% endif %}
- {% endblock content %}
+{% else %}
+<form method="post">
+    <a name='formLabel' class='formLabel'>Please fill the form with the requisite details</a>
+    {% csrf_token %}
+    <div class='formBlock'>
+        <div class='fieldBlock'>
+            <div class='fieldNo'>1</div>
+            {{ form.name|as_crispy_field }}
+        </div>
+        <div class='fieldBlock'>
+            <div class='fieldNo'>2</div>
+            {{ form.email|as_crispy_field }}
+        </div>
+        <div class='fieldBlock'>
+            <div class='fieldNo'>3</div>
+            {{ form.contact_number|as_crispy_field }}
+        </div>
+        <div class='fieldBlock'>
+            <div class='fieldNo'>4</div>
+            {{ form.other_contact|as_crispy_field }}
+        </div>
+        <div class='fieldBlock'>
+            <div class='fieldNo'>5</div>
+            {{ form.mci|as_crispy_field }}
+        </div>
+        <div class='fieldBlock'>
+            <div class='fieldNo'>6</div>
+            {{ form.state_authority|as_crispy_field }}
+        </div>
+        <div class='fieldBlock'>
+            <div class='fieldNo'>7</div>
+            {{ form.medical_qual|as_crispy_field }}
+        </div>
+        <div class='fieldBlock'>
+            <div class='fieldNo'>8</div>
+            {{ form.language|as_crispy_field }}
+        </div>
+        <div class='fieldBlock'>
+            <div class='fieldNo'>9</div>
+            {{ form.time_pref|as_crispy_field}}
+        </div>
+        <div class='fieldBlock'>
+            <div class='fieldNo'>10</div>
+            {{ form.comment|as_crispy_field }}
+        </div>
+        <button type="submit" class="submitBtn">Submit</button>
+    </div>
+</form>
+{% endif %}
+{% endblock content %}
