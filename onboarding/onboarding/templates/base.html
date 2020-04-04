@@ -1,40 +1,196 @@
 {% load static %}
 <!doctype html>
-  <html>
+<html>
 
-  <head>
-      <meta charset="utf-8">
-      <title>
-          {% block title %}
-          {{ page_title|default:"Untitled Page" }}
-         {% endblock title %}
-     </title>
-     <link href="{% static 'main.css' %}" rel="stylesheet" type="text/css">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
- </head>
+<head>
+    <meta charset="utf-8">
+    <title>
+        {% block title %}
+        {{ page_title|default:"Untitled Page" }}
+        {% endblock title %}
+    </title>
+    <link href="{% static 'main.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'form.css' %}" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sen&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+</head>
 
- <body>
-     <div id="wrapper">
-         <header id="header">
-             <div id="logo"><img src="{% static 'logo.png' %}" alt=""  /></div>
-             <div id="topbanner"><img src="{% static 'banner.png' %}" alt=""/></div>
-         </header>
-         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-8">
-                     <hr class="mt-0 mb-4">
-                    {% block content %}
-                    {% endblock %}
+<body>
+    <header class='siteHeader'>
+        <div class='siteContainer'>
+            <div class='row'>
+                <div class='textSection col-lg-9 col-md-12'>
+                    <div class="mainText">
+                        {% block form_title %}
+                            {{form_title}}
+                        {% endblock form_title %}
+                    </div>
+                    <div class='subtext'>
+                        This form is to <b>enroll doctors</b> to volunteer for the telemedicine project which is much
+                        needed
+                        right now in the <b>fight against THE VIRUS.</b>
+                    </div>
+                    <br />
+                    <div class='row supportedSection'>
+                        <div class='col-3 supportedText'>
+                            Supported by:
+                        </div>
+                        <div class='col'>
+                            <img src="{% static 'images/punjab_gov.png' %}" height='100' />
+                            <img src="{% static 'images/karnataka_gov.png' %}" height='100' />
+                        </div>
+                    </div>
+                </div>
+                <div class='imageSection col-lg-3 col-md-12 text-center'>
+                    <img class='docImg' src="{% static 'images/male_doc.png' %}" height="275" />
                 </div>
             </div>
-         </div>
-         <footer id="footer">Copyright &copy;
-             <script type="text/JavaScript">
+    </header>
+    <section class='siteContainer'>
+        <br />
+        Hi Doctor,
+        Some of the top startup entrepreneurs from India came together as a group, "Founders Vs Covid-19", to help India
+        manage and solve the COVID 19 pandemic. This is a form to enrol doctors to volunteer for the telemedicine
+        project which is much needed now in the fight against the virus.
+        <br />
+        <div class='faqHeader'>
+            Know more about being a volunteer
+        </div>
+        <div class='faqQuestion row'>
+            <div class='col-1'>
+                <div class='dot'></div>
+            </div>
+            <div class='questionArea col-11'>
+                <div class='question'>
+                    <b>Why we need this</b> technology platform?
+                </div>
+                <div class='answer'>
+                    As India enters stage 3 of the pandemic, it is expected that thousands of people will start
+                    experiencing Covid 19 like symptoms and would like to obtain healthcare access. However, as per
+                    government protocols, such people are only supposed to call the district health helpline and ask the
+                    officials to come to their homes (as lockdowns are in place). The district helplines are already or
+                    will soon not be reachable, won't be able to handle the incoming call volumes. Hence we are setting
+                    up a system which will screen and filter patients.
+                </div>
+            </div>
+        </div>
+        <div class='faqQuestion row'>
+            <div class='col-1'>
+                <div class='dot'></div>
+            </div>
+            <div class='questionArea col-11'>
+                <div class='question'>
+                    What will this <b>system do?</b>
+                </div>
+                <div class='answer'>
+                    The helpline would use TECHNOLOGY to FILTER patients with Covid-19 symptoms and queue them as per
+                    their risk level and be routed to you for confirmation of the same.
+                </div>
+            </div>
+        </div>
+        <div class='faqQuestion row'>
+            <div class='col-1'>
+                <div class='dot'></div>
+            </div>
+            <div class='questionArea col-11'>
+                <div class='question'>
+                    What will <b>I need to do?</b>
+                </div>
+                <div class='answer'>
+                    You will need to take voice calls from patients who are screened by the automated system, talk to
+                    these patients and mark each patient as a case where the district health department should dispatch
+                    the mobile testing squad or not. (There is no plan for video calls right now, all calls will be
+                    voice calls only).
+                </div>
+            </div>
+        </div>
+        <div class='faqQuestion row'>
+            <div class='col-1'>
+                <div class='dot'></div>
+            </div>
+            <div class='questionArea col-11'>
+                <div class='question'>
+                    Where will I need to be when I <b>take the calls?</b>
+                </div>
+                <div class='answer'>
+                    You can take the calls from wherever you are - you mobile network must be accessible.
+                </div>
+            </div>
+        </div>
+        <div class='faqQuestion row'>
+            <div class='col-1'>
+                <div class='dot'></div>
+            </div>
+            <div class='questionArea col-11'>
+                <div class='question'>
+                    <b>When</b> would I be contacted?
+                </div>
+                <div class='answer'>
+                    Once you submit the form, you'd be reached out in the next 24-48 hours.
+                </div>
+            </div>
+        </div>
+        <div class='faqQuestion row'>
+            <div class='col-1'>
+                <div class='dot'></div>
+            </div>
+            <div class='questionArea col-11'>
+                <div class='question'>
+                    <b>How many calls</b> should I expect?
+                </div>
+                <div class='answer'>
+                    We have no idea but during the pilot phase it will be for only a small set of people, however if and
+                    when the virus spreads the call volumes will shoot up.
+                </div>
+            </div>
+        </div>
+        <div class='faqQuestion row'>
+            <div class='col-1'>
+                <div class='dot'></div>
+            </div>
+            <div class='questionArea col-11'>
+                <div class='question'>
+                    What do I need to do to <b>volunteer for the effort?</b>
+                </div>
+                <div class='answer'>
+                    Please fill the form with the requisite details and we will contact you soon.
+                </div>
+            </div>
+        </div>
+        <div class='faqQuestion row'>
+            <div class='col-1'>
+                <div class='dot'></div>
+            </div>
+            <div class='questionArea col-11'>
+                <div class='question'>
+                    <b>Will I be paid</b> for this effort?
+                </div>
+                <div class='answer'>
+                    We are all volunteers for now and not expecting anyone to pay us - our common goal and reward will
+                    be India free from Covid 19!
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="siteContainer">
+        <div class="row ">
+            <div class="col">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    <footer>Copyright &copy;
+        <script type="text/JavaScript">
                  document.write(new Date().getFullYear());
              </script> TeleMed
-         </footer>
-      </div>
- </body>
- </html>
+    </footer>
+</body>
+
+</html>
