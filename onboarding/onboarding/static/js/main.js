@@ -1,8 +1,25 @@
 // Author: Ajith VM
 
 $(document).ready(function () {
+  $('body .fancyRadioButtons .controls .checkbox').each(function (index, item) {
+    var thisRadio = $(this).find('input')
+    var value = $(thisRadio).prop('value')
+    var name = $(thisRadio).prop('name')
+    var id = $(thisRadio).prop('id')
+    $(item).html(
+      '<input type="checkbox" value="' +
+        value +
+        '" id="' +
+        id +
+        '" name="' +
+        name +
+        '"></input><span>' +
+        value +
+        '</span>'
+    )
+  })
   $('body #fancySelect').each(function () {
-    var parentSelect = $(this);
+    var parentSelect = $(this)
     $(parentSelect)
       .find('select option')
       .each(function (index, item) {
