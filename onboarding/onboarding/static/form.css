@@ -81,3 +81,22 @@ a.formLabel {
     background-color: #007f96;
     color: white;
 }
+
+.fancySelect select{
+    display: none;
+}
+
+.fancySelect .fancySelectBox{
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid #007f96;
+    border-radius: 7px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.fancySelect .fancySelectBox.active{
+    background-color: #007f96;
+    color: white;
+}
