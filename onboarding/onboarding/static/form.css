@@ -1,23 +1,23 @@
-.formBlock{
+.formBlock {
     border-left: 1px solid #ceebf1;
     padding-left: 30px;
 }
 
-a.formLabel{
+a.formLabel {
     font-weight: bold;
     color: black;
     font-size: 16px;
     margin-bottom: 20px;
     margin-top: 30px;
-    display: inline-block
+    display: inline-block;
 }
 
-.formBlock .fieldBlock{
+.formBlock .fieldBlock {
     position: relative;
     margin-bottom: 40px;
 }
 
-.fieldBlock .fieldNo{
+.fieldBlock .fieldNo {
     position: absolute;
     top: 0px;
     left: -45px;
@@ -29,7 +29,8 @@ a.formLabel{
     line-height: 1.9;
 }
 
-.fieldBlock input, .fieldBlock textarea{
+.fieldBlock input,
+.fieldBlock textarea {
     width: 100%;
     max-width: 500px;
     border-radius: 4px;
@@ -40,17 +41,17 @@ a.formLabel{
     outline: 0px;
 }
 
-.fieldBlock .controls .checkbox{
+.fieldBlock .controls .checkbox {
     margin-right: 20px;
     cursor: pointer;
 }
 
-.fieldBlock .controls .checkbox input{
+.fieldBlock .controls .checkbox input {
     width: auto;
     margin-right: 5px;
 }
 
-.formBlock .submitBtn{
+.formBlock .submitBtn {
     width: 100%;
     max-width: 350px;
     background-color: #da502d;
@@ -59,4 +60,43 @@ a.formLabel{
     padding: 10px 0px;
     cursor: pointer;
     outline: 0px;
+}
+
+.fancyRadioButtons .controls label.checkbox{
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+
+.fancyRadioButtons .controls label.checkbox span {
+    border: 1px solid #007f96;
+    padding: 5px 10px;
+    border-radius: 7px;
+}
+
+.fancyRadioButtons .controls label.checkbox input{
+    display: none;
+}
+
+.fancyRadioButtons .controls label.checkbox input:checked ~ span{
+    background-color: #007f96;
+    color: white;
+}
+
+.fancySelect select{
+    display: none;
+}
+
+.fancySelect .fancySelectBox{
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid #007f96;
+    border-radius: 7px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.fancySelect .fancySelectBox.active{
+    background-color: #007f96;
+    color: white;
 }
