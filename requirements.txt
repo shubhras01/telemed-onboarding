@@ -6,7 +6,7 @@ black==19.10b0
 certifi==2019.11.28
 chardet==3.0.4
 click==7.1.1
-Django==3.0.4
+Django==3.0.7
 entrypoints==0.3
 flake8==3.7.9
 idna==2.9
@@ -39,7 +39,7 @@ black==19.10b0
 certifi==2019.11.28
 chardet==3.0.4
 click==7.1.1
-Django==3.0.4
+Django==3.0.7
 django-crispy-forms==1.9.0
 django-rest-framework-mongoengine==3.4.1
 djangorestframework==3.11.0
