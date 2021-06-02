@@ -27,7 +27,7 @@ snowballstemmer==2.0.0
 sqlparse==0.3.1
 toml==0.10.0
 typed-ast==1.4.1
-urllib3==1.25.8
+urllib3==1.26.5
 wrapt==1.11.2
 mongoengine==0.19.1
 pymongo==3.10.1
@@ -66,5 +66,5 @@ snowballstemmer==2.0.0
 sqlparse==0.3.1
 toml==0.10.0
 typed-ast==1.4.1
-urllib3==1.25.8
+urllib3==1.26.5
 wrapt==1.11.2
